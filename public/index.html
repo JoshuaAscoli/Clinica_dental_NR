@@ -1,20 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestión de Pacientes</title>
+  <title>Historial Medico Pacientes</title>
+  <header style="background-image: url('/img/banner4.jpeg');">
+    <h1>Historial Medico Pacientes</h1>
+  </header>  
   <style>
+    header {
+      display: flex;
+      /* Usa Flexbox */
+      justify-content: center;
+      /* Centra horizontalmente */
+      align-items: center;
+      /* Centra verticalmente */
+    }
+
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f7fa;
       margin: 0;
       padding: 0;
     }
+
     h1 {
       text-align: center;
-      padding: 20px;
+      /* Centra el texto del título */
+      margin-top: 20px;
+      /* Añade un margen superior para separarlo del contenido anterior */
+      margin-bottom: 30px;
+      /* Añade un margen inferior para separarlo de la tabla */
+      color: #253d8d;
+      /* Cambia el color del texto */
+      font-family: 'Arial', sans-serif;
+      /* Cambia la fuente del texto */
     }
+
+    table {
+      width: 100%;
+      /* Ajusta el ancho de la tabla al 100% del contenedor */
+      border-collapse: collapse;
+      /* Elimina el espacio entre las celdas */
+      text-align: left;
+      /* Alinea el texto a la izquierda */
+    }
+
+    th,
+    td {
+      padding: 8px;
+      /* Añade un poco de espacio alrededor del texto en las celdas */
+      border: 1px solid #007BFF;
+      /* Añade un borde a las celdas */
+    }
+
+    th {
+      background-color: #1a7fa7;
+      /* Color de fondo para los encabezados de la tabla */
+      color: #007BFF;
+      /* Color del texto para los encabezados */
+    }
+
+    tr:nth-child(even) {
+      background-color: #007BFF;
+      /* Añade un color de fondo a las filas pares para mejorar la legibilidad */
+    }
+
+    tr:hover {
+      background-color: #007BFF;
+      /* Cambia el color de fondo de la fila al pasar el mouse sobre ella */
+    }
+
     button {
       padding: 10px 20px;
       background-color: #007BFF;
@@ -24,38 +81,46 @@
       cursor: pointer;
       font-size: 16px;
     }
+
     button:hover {
       background-color: #0056b3;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
     }
-    table th, table td {
+
+    table th,
+    table td {
       padding: 10px;
       border: 1px solid #ddd;
       text-align: left;
     }
+
     table th {
       background-color: #f4f4f4;
     }
+
     .actions {
       display: flex;
       gap: 10px;
     }
+
     .btn-action {
       cursor: pointer;
       color: #007BFF;
       font-size: 18px;
     }
+
     .btn-action:hover {
       text-decoration: underline;
     }
   </style>
 </head>
+
 <body>
-  <h1>Gestión de Pacientes</h1>
   <button id="btn-agregar">Agregar Paciente</button>
   <table id="tabla-pacientes">
     <thead>
@@ -76,39 +141,50 @@
 
   <!-- Modal para agregar o editar paciente -->
   <div id="modal" style="display:none;">
-    <div style="background-color:white; padding:20px; border-radius:5px; width:300px; margin:auto;">
-      <h2 id="modal-titulo">Agregar Paciente</h2>
-      <form id="form-paciente">
+    <div style="background-color:white; padding:20px; border-radius:5px; width:100%; max-width:400px; margin:auto;">
+      <h2 id="modal-titulo" style="text-align:center;">Agregar Paciente</h2>
+      <form id="form-paciente" style="display: flex; flex-direction: column; gap: 10px;">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" required>
+        <input type="text" id="nombre" required style="width: 100%; box-sizing: border-box;">
+
         <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido">
+        <input type="text" id="apellido" style="width: 100%; box-sizing: border-box;">
+
         <label for="telefono">Teléfono:</label>
-        <input type="text" id="telefono">
+        <input type="text" id="telefono" style="width: 100%; box-sizing: border-box;">
+
         <label for="correo">Correo:</label>
-        <input type="email" id="correo">
+        <input type="email" id="correo" style="width: 100%; box-sizing: border-box;">
+
         <label for="edad">Edad:</label>
-        <input type="number" id="edad">
+        <input type="number" id="edad" style="width: 100%; box-sizing: border-box;">
+
         <label for="seguro">Número de Seguro:</label>
-        <input type="text" id="seguro">
+        <input type="text" id="seguro" style="width: 100%; box-sizing: border-box;">
+
         <label for="ultima_visita">Última Visita:</label>
-        <input type="date" id="ultima_visita">
+        <input type="date" id="ultima_visita" style="width: 100%; box-sizing: border-box;">
 
         <!-- Campos del historial médico -->
         <label for="condiciones_medicas">Condiciones Médicas:</label>
-        <textarea id="condiciones_medicas"></textarea>
-        <label for="medicamentos">Medicamentos:</label>
-        <textarea id="medicamentos"></textarea>
-        <label for="detalles_alergias">Detalles Alergias:</label>
-        <textarea id="detalles_alergias"></textarea>
-        <label for="gravedad_alergias">Gravedad de Alergias:</label>
-        <input type="text" id="gravedad_alergias">
-        <label for="alergias">Alergias:</label>
-        <textarea id="alergias"></textarea>
+        <textarea id="condiciones_medicas" style="width: 100%; box-sizing: border-box;"></textarea>
 
-        <button type="submit">Guardar</button>
+        <label for="medicamentos">Medicamentos:</label>
+        <textarea id="medicamentos" style="width: 100%; box-sizing: border-box;"></textarea>
+
+        <label for="detalles_alergias">Detalles Alergias:</label>
+        <textarea id="detalles_alergias" style="width: 100%; box-sizing: border-box;"></textarea>
+
+        <label for="gravedad_alergias">Gravedad de Alergias:</label>
+        <input type="text" id="gravedad_alergias" style="width: 100%; box-sizing: border-box;">
+
+        <label for="alergias">Alergias:</label>
+        <textarea id="alergias" style="width: 100%; box-sizing: border-box;"></textarea>
+
+        <button type="submit"
+          style="margin-top: 10px; padding: 10px; width: 100%; box-sizing: border-box;">Guardar</button>
       </form>
-      <button onclick="cerrarModal()">Cerrar</button>
+      <button style="margin-top: 10px; padding: 10px; width: 100%; box-sizing: border-box;" onclick="cerrarModal()">Cerrar</button>
     </div>
   </div>
 
@@ -147,7 +223,7 @@
         document.getElementById('edad').value = paciente.edad;
         document.getElementById('seguro').value = paciente.numero_seguro;
         document.getElementById('ultima_visita').value = paciente.ultima_visita;
-        
+
         // Campos del historial médico
         document.getElementById('condiciones_medicas').value = paciente.historial_medico.condiciones_medicas || '';
         document.getElementById('medicamentos').value = paciente.historial_medico.medicamentos || '';
@@ -270,4 +346,5 @@
     }
   </script>
 </body>
+
 </html>
